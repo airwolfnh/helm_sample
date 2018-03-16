@@ -1,0 +1,23 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "test1.fullname" . }}
+  labels:
+    app: {{ template "test1.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "test1.fullname" . }}
+    spec:
+      containers:
+      - name: {{ template "test1.fullname" . }}
+        image : "{{ .Values.image }}:{{ .Values.imageTag }}"
+        ports:
+        - name: web
+          containerPort: 8080

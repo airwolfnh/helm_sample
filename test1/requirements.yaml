@@ -1,0 +1,7 @@
+dependencies:
+  - name: mysql
+    version : 0.3.5
+    repository : https://kubernetes-charts.storage.googleapis.com/
+  - name: mongodb
+    repository: https://kubernetes-charts.storage.googleapis.com
+    version: 0.4.27

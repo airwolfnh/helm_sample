@@ -1,0 +1,20 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "test1.fullname" . }}
+  namespace: monitoring-system
+  labels:
+    team: frontend
+    app: {{ template "test1.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "test1.fullname" . }}
+  namespaceSelector:
+    any: true
+  endpoints:
+  - port: web
